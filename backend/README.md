@@ -1,3 +1,3 @@
-# Explore Available backend
+# Backend
 
 IBM Federated Learning
