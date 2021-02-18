@@ -1,12 +1,6 @@
 <template>
   <div>
     <nuxt />
-    <!-- <a href="https://github.com/Sun-Shuai/federated-learning-blockchain-web" target="_blank">
-      <el-image style="position: fixed; top: 0; right: 0; border: 0;z-index: 9999;height: 100px;width: 100px"
-                src="/github.png"
-                alt="Fork me on GitHub"></el-image>
-    </a>
-    <lang-switcher style="position: fixed;bottom: 20px;right: 20px;z-index: 9" /> -->
   </div>
 </template>
 
@@ -34,11 +28,5 @@ body {
   margin: 0;
 }
 
-
 </style>
-<script>
-  import LangSwitcher from "../components/lang-switcher";
-  export default {
-    components: {LangSwitcher}
-  }
-</script>
+

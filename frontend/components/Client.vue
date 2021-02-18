@@ -1,7 +1,7 @@
 <template>
   <el-card shadow="always" body-style="padding:20px"
            style="height: 280px;width: 250px;margin: 20px;display: inline-block"
-           v-loading="this.state==='mining...'" element-loading-text="mining..."
+           v-loading="this.state==='training...'" element-loading-text="training..."
            element-loading-spinner="el-icon-loading">
 
     <div style="display: flex;justify-content:space-around;align-items: center;font-weight: 600">
@@ -12,24 +12,24 @@
       <span style="color: orange">{{winner}}</span>
     </div>
 
-    <div style="margin-top: 10px;display: flex;justify-content: space-between;align-items: center">
-      <span>{{this.$t('Ip Addr')}}</span>
-      <input style="width:70%" v-model="IpAddr" > 
+    <div style="margin-top: 20px;display: flex;justify-content: space-between;align-items: center">
+      <span>{{this.$t('state')}}</span>
+      {{state}}
     </div>
 
     <div style="margin-top: 10px;display: flex;justify-content: space-between;align-items: center">
-      <span>{{this.$t('samples')}}</span>
-      <el-input-number v-model="samples" :min="1000" :step="1000" :max="10000" size="mini"
-                       :disabled="readonly"></el-input-number>
+      <span>{{this.$t('Ip Addr')}}</span>
+      <input style="width:70%" v-model="ipAddr" @change="inputIpAddr" placeholder="127.0.0.1"> 
     </div>
-    
+
     <div style="margin-top: 10px;display: flex;justify-content: space-between;align-items: center">
       <span>{{this.$t('accuracy')}}</span>
       {{accu}}
     </div>
 
     <div style="margin-top: 10px;display: flex;justify-content: space-between;align-items: center">
-      <span>{{this.$t('loss')}}</span>
+      <!-- <span>{{this.$t('loss')}}</span> -->
+      <span>{{this.$t(losstext)}}</span>
       {{loss}}
     </div>
 
@@ -43,73 +43,58 @@
       id: 0,
       state: '',
       readonly: false,
+      model: '',
       result: null,
-      reward: 0,
       clientnum: 0,
-      blockheight: 0
     },
     data() {
       return {
-        // power: 4,
+        ipAddr: '',
         colors: {2: '#32CD32', 4: '#32CD32', 5: '#32CD32'},
         percentage: 0,
         status: null,
-        samples: 8000,
         loss: '--',
+        losstext: 'loss',
         accu: '--',
-        // winner: ' ',
-        // myreward: '--',
-        // myblockheight: this.blockheight
       }
     },
-    methods: {},
+    methods: {
+      inputIpAddr: function () {
+        this.$emit('ipaddrchange', this.ipAddr);
+      },
+    },
     created: function () {
       this.$store.commit('add', {
-        id: this.id,
-        // power: this.power
+        id: this.id
       });
     },
     destroyed: function () {
       this.$store.commit('remove', {
         id: this.id,
-        // power: this.power
       })
     },
     watch: {
-      // blockheight: function (val) {
-      //   this.myblockheight = val
-      // },
-      // power: function (val) {
-      //   this.$store.commit('update', {
-      //     id: this.id,
-      //     power: this.power
-      //   })
-      // },
-      // result: function () {
-      //   let flag = this.power * 2 - 1
-      //   this.loss = (this.result[0][flag] - this.samples / 1000 * 0.001 + Math.random() * 0.001).toFixed(4)
-      //   this.accu = (this.result[1][flag] + this.samples / 1000 * 0.001 + Math.random() * 0.001).toFixed(4)
-      // },
+      result: function () {
+        this.loss = this.result[this.id.toString()][0]
+        this.accu = this.result[this.id.toString()][1]
+      },
       state: function (val) {
-        if (val === 'training...') {
-          // this.winner = ' '
-        }
-        if (val === 'synchronizing...') {
-          let winnerId = this.$store.getters.candidates
+        // if (val === 'training...') {
+          
+        // }
+        // if (val === 'synchronizing...') {
 
-          if (this.id === winnerId) {
-            // this.myblockheight += 1
-            // this.winner = 'WINNER'
-          }
-          if (this.id === winnerId) {
-            // this.myreward = (this.reward * 0.7 / this.clientnum * this.accu + this.reward * 0.2).toFixed(3)
-          } else {
-            // this.myreward = (this.reward * 0.7 / this.clientnum * this.accu).toFixed(3)
-          }
-
-        }
+        // }
 
       },
+      model: function() {
+        if (this.model == "CNN") {
+          this.losstext = "loss"
+        } else {
+          this.losstext = "neg_log_loss"
+        }
+        
+      }
 
     }
   }

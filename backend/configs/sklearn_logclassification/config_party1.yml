@@ -1,0 +1,28 @@
+aggregator:
+  ip: 127.0.0.1
+  port: 5000
+connection:
+  info:
+    ip: 127.0.0.1
+    port: 8086
+    tls_config:
+      enable: false
+  name: FlaskConnection
+  path: ibmfl.connection.flask_connection
+  sync: false
+data:
+  info:
+    txt_file: /home/tri/fl-demo/backend/data/adult/random/data_party1.csv
+  name: AdultSklearnDataHandler
+  path: ibmfl.util.data_handlers.adult_sklearn_data_handler
+local_training:
+  name: LocalTrainingHandler
+  path: ibmfl.party.training.local_training_handler
+model:
+  name: SklearnSGDFLModel
+  path: ibmfl.model.sklearn_SGD_linear_fl_model
+  spec:
+    model_definition: backend/configs/sklearn_logclassification/model_architecture.pickle
+protocol_handler:
+  name: PartyProtocolHandler
+  path: ibmfl.party.party_protocol_handler

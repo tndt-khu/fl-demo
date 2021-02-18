@@ -2,7 +2,7 @@
   "name": "flb-web",
   "version": "1.0.0",
   "description": "flb-demo-project",
-  "author": "sunshuai",
+  "author": "tringuyen",
   "private": true,
   "scripts": {
     "dev": "nuxt",
@@ -11,12 +11,12 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "@tensorflow/tfjs": "^2.0.0",
-    "@tensorflow/tfjs-vis": "^1.4.0",
+    "@nuxtjs/axios": "5.12.5",
     "cookieparser": "^0.1.0",
     "element-ui": "^2.4.11",
     "nuxt": "^2.0.0",
-    "nuxt-i18n": "^6.12.2"
-  },
-  "devDependencies": {}
+    "nuxt-i18n": "^6.12.2",
+    "vue": "2.6.11",
+    "vue-papa-parse": "2.0.0"
+  }
 }

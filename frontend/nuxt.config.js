@@ -1,4 +1,4 @@
-import I18N from './config/i18n'
+// import I18N from './config/i18n'
 
 export default {
   mode: 'spa',
@@ -42,7 +42,8 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
-    ['nuxt-i18n', I18N],
+    // ['nuxt-i18n', I18N],
+    ['nuxt-i18n']
   ],
   /*
   ** Build configuration
@@ -53,6 +54,9 @@ export default {
     ** You can extend webpack config here
     */
     extend (config, ctx) {
+      config.node = {
+        fs: "empty"
+      }
     }
   }
 }
