@@ -1,12 +1,7 @@
-Federated Learning Blockchain Web Demo
-
+Federated Learning Web Demo
 ***
 
-Preview Online: http://demo.blockchain-neu.com
-
-***
-
-[Vue.js](https://cn.vuejs.org/) + [Vue CLI](https://cli.vuejs.org/) + [Vue Router](https://router.vuejs.org/zh/) + [Vuex](https://vuex.vuejs.org/) + [Nuxt.js](https://nuxtjs.org/) + [Element UI](https://element.eleme.cn/#/zh-CN/component/installation) 
+[Vue.js](https://cn.vuejs.org/) + [Nuxt.js](https://nuxtjs.org/)
 
 ***
 
