@@ -8,6 +8,10 @@ Federated Learning Web Demo
 ## Build Setup
 
 ``` bash
+# start flask server
+$ python backend/fl_server.py
+
+# start nuxt sever
 # install dependencies
 $ npm install
 
