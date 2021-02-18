@@ -12,6 +12,8 @@ Federated Learning Web Demo
 $ python backend/fl_server.py
 
 # start nuxt sever
+$ cd frontend
+
 # install dependencies
 $ npm install
 
