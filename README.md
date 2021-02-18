@@ -1,7 +1,7 @@
 Federated Learning Web Demo
 ***
 
-[Vue.js](https://cn.vuejs.org/) + [Nuxt.js](https://nuxtjs.org/)
+[Vue.js](https://cn.vuejs.org/) + [Nuxt.js](https://nuxtjs.org/) + [Flask](https://flask.palletsprojects.com/en/1.1.x/)
 
 ***
 
