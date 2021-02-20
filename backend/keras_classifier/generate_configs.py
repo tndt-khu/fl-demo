@@ -94,11 +94,7 @@ def get_model_config(folder_configs, dataset, loss_func, is_agg=False, party_id=
     # Generate model spec:
     spec = {
         'model_name': 'keras-cnn',
-        'model_definition': fname,
-        'compile_model_options': 
-            {'loss': 'categorical_crossentropy',
-             'optimizer': 'adadelta',
-             'metrics': ['accuracy']}
+        'model_definition': fname
     }
 
     model = {
