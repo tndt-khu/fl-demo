@@ -1,13 +1,19 @@
 Federated Learning Web Demo
 ***
 
-[Vue.js](https://cn.vuejs.org/) + [Nuxt.js](https://nuxtjs.org/)
+[IBM Federated Learning](https://github.com/IBM/federated-learning-lib) + [Flask](https://flask.palletsprojects.com/en/1.1.x/) + [Vue.js](https://cn.vuejs.org/) + [Nuxt.js](https://nuxtjs.org/)
 
 ***
 
 ## Build Setup
 
 ``` bash
+# start flask server
+$ python backend/fl_server.py
+
+# start nuxt sever
+$ cd frontend
+
 # install dependencies
 $ npm install
 
