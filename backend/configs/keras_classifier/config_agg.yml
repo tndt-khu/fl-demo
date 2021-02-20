@@ -19,7 +19,7 @@ hyperparams:
   global:
     max_timeout: 60
     parties: 2
-    round: '2'
+    round: '3'
     rounds: 3
     termination_accuracy: 0.9
   local:

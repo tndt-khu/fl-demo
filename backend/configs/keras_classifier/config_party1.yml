@@ -12,7 +12,7 @@ connection:
   sync: false
 data:
   info:
-    npz_file: /home/tri/fl-demo/backend/data/mnist/random/data_party1.npz
+    npz_file: /home/tri/fl_demo/backend/data/mnist/random/data_party1.npz
   name: MnistKerasDataHandler
   path: ibmfl.util.data_handlers.mnist_keras_data_handler
 local_training:

@@ -316,10 +316,14 @@
         })
         .catch(error => {
           console.log(error)
-          this.result = response.data
           this.btnMsg = 'Run'
           this.isTraining = false
           this.state = "finish"
+          this.$notify({
+              title: 'Message',
+              message: 'Training Failed!',
+              type: 'error'
+            })
         })
       },
       

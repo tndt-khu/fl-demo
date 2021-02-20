@@ -137,9 +137,9 @@ def generate_hp_config(module, num_parties, train_round):
     return hp
 
 
-def generate_model_config(module, folder_configs, dataset, is_agg=False, party_id=0):
+def generate_model_config(module, folder_configs, dataset, loss_func, is_agg=False, party_id=0):
     get_model_config = getattr(module, 'get_model_config')
-    model = get_model_config(folder_configs, dataset, is_agg, party_id)
+    model = get_model_config(folder_configs, dataset, loss_func, is_agg, party_id)
 
     return model
 
@@ -159,7 +159,8 @@ def generate_datahandler_config(module, party_id, dataset, folder_data, is_agg=F
     return dh
 
 
-def generate_agg_config(module, ips, num_parties, conn_type, dataset, folder_data, folder_configs, train_round, keys):
+def generate_agg_config(module, ips, num_parties, conn_type, dataset, folder_data, 
+                        folder_configs, train_round, loss_func, keys):
 
     if not os.path.exists(folder_configs):
         os.makedirs(folder_configs)
@@ -172,7 +173,7 @@ def generate_agg_config(module, ips, num_parties, conn_type, dataset, folder_dat
         'protocol_handler': generate_ph_config(conn_type)
     }
 
-    model = generate_model_config(module, folder_configs, dataset, True)
+    model = generate_model_config(module, folder_configs, dataset, loss_func, True)
     data = generate_datahandler_config(
         module, 0, dataset, folder_data, True)
     if model:
@@ -186,7 +187,8 @@ def generate_agg_config(module, ips, num_parties, conn_type, dataset, folder_dat
           os.path.abspath(os.path.join(folder_configs, 'config_agg.yml')))
 
 
-def generate_party_config(module, ips, num_parties, conn_type, dataset, folder_data, folder_configs, keys):
+def generate_party_config(module, ips, num_parties, conn_type, dataset, folder_data, 
+                            folder_configs, loss_func, keys):
 
     for i in range(num_parties):
         config_file = os.path.join(
@@ -199,7 +201,7 @@ def generate_party_config(module, ips, num_parties, conn_type, dataset, folder_d
         content = {
             'connection': generate_connection_config(conn_type, ips[i], i, True),
             'data': generate_datahandler_config(module, i, dataset, folder_data),
-            'model': generate_model_config(module, folder_configs, dataset, party_id=i),
+            'model': generate_model_config(module, folder_configs, dataset, loss_func, party_id=i),
             'protocol_handler': generate_ph_config(conn_type, True),
             'local_training': lh,
             'aggregator': get_aggregator_info(conn_type)
@@ -247,9 +249,9 @@ if __name__ == '__main__':
 
 
     generate_agg_config(config_model, ips, num_parties, conn_type,
-                        dataset, party_data_path, folder_configs, train_round,
+                        dataset, party_data_path, folder_configs, train_round, loss_func,
                         None)
     generate_party_config(config_model, ips, num_parties, conn_type,
-                          dataset, party_data_path, folder_configs,
+                          dataset, party_data_path, folder_configs, loss_func,
                           None)
 
