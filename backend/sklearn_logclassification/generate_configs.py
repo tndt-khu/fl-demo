@@ -54,7 +54,7 @@ def get_data_handler_config(party_id, dataset, folder_data, is_agg=False):
     return data
 
 
-def get_model_config(folder_configs, dataset, is_agg=False, party_id=0):
+def get_model_config(folder_configs, dataset, loss_func, is_agg=False, party_id=0):
     if is_agg:
         return None
 
